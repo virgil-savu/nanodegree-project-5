@@ -1,31 +1,30 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Neighborhood Map</title>
-    <style type="text/css">
-      html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
-    </style>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJryuPUZEyTf96K5N6LvSnTr8izy44O3o">
-    </script>
-    <script type="text/javascript">
-      var torino = new google.maps.LatLng(45.0734888, 7.6756065);
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Udacity: Front-End Developer Nanodegree - Project 5</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
 
-      function initialize() {
-        var mapOptions = {
-          //center: { lat: -34.397, lng: 150.644},
-          center: torino,
-          zoom: 13
-        };
-        var map = new google.maps.Map(document.getElementById('map-canvas'),
-            mapOptions);
-      }
-      google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
 </head>
+
 <body>
+    <input id="search-input" class="searchBar" type="text" placeholder="Search for a Location">
     <div id="map-canvas"></div>
-    <script src="js/lib/knockout-3.3.0.js"></script>
-    <script src="js/app.js"></script>
+    <div id="list">
+        <h2>List of found places</h2>
+        <ul data-bind="foreach: allFoundPlaces">
+            <li data-bind="click: $parent.clickMarker">
+
+                <p class="name"><span data-bind="text: name"><span></p>
+                <p class="address"><span data-bind="text: address"></span></p>
+            </li>
+        </ul>
+    </div>
 </body>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script src="js/lib/knockout-3.3.0.js"></script>
+    <script src="js/lib/jquery-1.11.3.min.js"></script>
+    <script src="js/app.js"></script>
 </html>
